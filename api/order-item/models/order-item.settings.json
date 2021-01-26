@@ -1,0 +1,28 @@
+{
+  "kind": "collectionType",
+  "collectionName": "order_items",
+  "info": {
+    "name": "Order item",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "product": {
+      "model": "product"
+    },
+    "Price": {
+      "type": "integer"
+    },
+    "Count": {
+      "type": "integer"
+    },
+    "sum": {
+      "type": "string",
+      "private": true
+    }
+  }
+}

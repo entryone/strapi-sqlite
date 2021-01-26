@@ -1,0 +1,17 @@
+{
+  "kind": "collectionType",
+  "collectionName": "razdel_menus",
+  "info": {
+    "name": "Razdel menu"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "Name": {
+      "type": "string"
+    }
+  }
+}

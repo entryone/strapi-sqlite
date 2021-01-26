@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/razdel-menus",
+      "handler": "razdel-menu.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/razdel-menus/count",
+      "handler": "razdel-menu.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/razdel-menus/:id",
+      "handler": "razdel-menu.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/razdel-menus",
+      "handler": "razdel-menu.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/razdel-menus/:id",
+      "handler": "razdel-menu.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/razdel-menus/:id",
+      "handler": "razdel-menu.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

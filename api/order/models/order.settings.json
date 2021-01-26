@@ -1,0 +1,27 @@
+{
+  "kind": "collectionType",
+  "collectionName": "orders",
+  "info": {
+    "name": "Order",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "itemmm": {
+      "type": "component",
+      "repeatable": true,
+      "component": "order-item.order-items"
+    },
+    "slug": {
+      "type": "string"
+    },
+    "totalSumText": {
+      "type": "string",
+      "private": true
+    }
+  }
+}
