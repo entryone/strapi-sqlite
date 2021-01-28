@@ -35,8 +35,7 @@ module.exports = {
       totalSumText,
       itemmm: ctx.request.body.items,
     });
-    //await senEmail()
-
+    await senEmail()
     return {
       id: order.id
     };
