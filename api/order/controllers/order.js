@@ -29,12 +29,14 @@ module.exports = {
       slug = `${fullTitle.join(', ')}`
       totalSumText = `${fullSum} руб`
     })
+    console.log('ccc')
     const order = await strapi.query('order').create({
       slug,
       totalSumText,
       itemmm: ctx.request.body.items,
     });
     //await senEmail()
+
     return {
       id: order.id
     };
