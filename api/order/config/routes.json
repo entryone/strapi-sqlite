@@ -33,6 +33,14 @@
       }
     },
     {
+      "method": "POST",
+      "path": "/addFromCart",
+      "handler": "order.addFromCart",
+      "config": {
+        "policies": []
+      }
+    },
+    {
       "method": "PUT",
       "path": "/orders/:id",
       "handler": "order.update",
