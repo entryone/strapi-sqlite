@@ -45,7 +45,7 @@ module.exports = {
 async function senEmail () {
   await strapi.plugins['email'].services.email.send({
     to: 'a.i.kulinich@gmail.com',
-    from: 'admin@strapi.io',
+    from: 'admin@strapi-m0rl.onrender.com',
     subject: 'Comment posted that contains a bad words',
     text: `
           The comment #555 contain a bad words.
