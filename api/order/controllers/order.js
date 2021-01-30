@@ -60,7 +60,8 @@ module.exports = {
 async function senEmail (order) {
   const text = `===========
 № <b>${order.id}</b>
-${order.description}
+${order.description.trim()}
+
 Сумма: ${order.totalSumText}
 Имя: ${order.customerName}
 Телефон: ${order.phone}
