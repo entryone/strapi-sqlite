@@ -11,17 +11,26 @@
     "draftAndPublish": true
   },
   "attributes": {
-    "itemmm": {
+    "item": {
       "type": "component",
       "repeatable": true,
       "component": "order-item.order-items"
     },
-    "slug": {
+    "description": {
       "type": "string"
     },
     "totalSumText": {
       "type": "string",
       "private": true
+    },
+    "customerName": {
+      "type": "string"
+    },
+    "phone": {
+      "type": "string"
+    },
+    "address": {
+      "type": "string"
     }
   }
 }

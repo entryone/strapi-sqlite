@@ -8,8 +8,9 @@
 module.exports = {
   async addFromCart(ctx) {
     console.log('data', ctx.request.body)
+    const {name, phone, address, items} = ctx.request.body
     const prods = {}
-    const products = ctx.request.body.items.map(item => item.product)
+    const products = items.map(item => item.product)
     const pr = await strapi.query('product')
       .find({id_in: products})
     pr.forEach(prod => {
@@ -17,7 +18,7 @@ module.exports = {
     })
     let fullSum = 0
     let fullTitle = []
-    let slug = ''
+    let description = ''
     let totalSumText = ''
     ctx.request.body.items.forEach(function (item) {
       const product = prods[item.product]
@@ -26,16 +27,19 @@ module.exports = {
       item.sum = `${product.Name}: ${product.Price} x ${item.Count} = ${itemSum} руб`
       fullSum += itemSum
       fullTitle.push(`${product.Name} x ${item.Count}`)
-      slug = `${fullTitle.join(', ')}`
+      description = `${fullTitle.join(', ')}`
       totalSumText = `${fullSum} руб`
     })
-    console.log('ccc')
+
     const order = await strapi.query('order').create({
-      slug,
+      customerName: name,
+      phone,
+      address,
+      description,
       totalSumText,
-      itemmm: ctx.request.body.items,
+      item: ctx.request.body.items,
     });
-    await senEmail()
+    await senEmail(order)
     return {
       id: order.id
     };
@@ -43,15 +47,15 @@ module.exports = {
 };
 
 
-async function senEmail () {
-  await strapi.plugins['email'].services.email.send({
+async function senEmail (order) {
+  return await strapi.plugins['email'].services.email.send({
     to: 'a.i.kulinich@gmail.com',
-    from: 'admin@strapi-m0rl.onrender.com',
-    subject: 'Comment posted that contains a bad words',
-    text: `
-          The comment #555 contain a bad words.
-
-          Comment:
-        `,
+    from: 'a.i.kulinich@gmail.com',
+    subject: 'Новый заказа №' + order.id,
+    text: `${order.description}
+Сумма: ${order.totalSumText}
+Имя: ${order.customerName}
+Телефон: ${order.phone}
+Адрес: ${order.address}`,
   });
 }
