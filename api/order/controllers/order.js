@@ -3,6 +3,7 @@ const TelegramBot = require('node-telegram-bot-api');
 const token = '756258457:AAEsOHkTF61dZ_-_tCsMkmaCMuLykp06pGQ';
 const bot = new TelegramBot(token, {polling: true});
 const kulinich_chatId = '429692685'
+const manager_chatId = '1574267841'
 bot.on('message', (msg) => {
   console.log(msg);
   const chatId = msg.chat.id;
@@ -68,6 +69,7 @@ ${order.description.trim()}
 Адрес: ${order.address}
 ===========`
   bot.sendMessage(kulinich_chatId, text, {parse_mode: 'html'});
+  bot.sendMessage(manager_chatId, text, {parse_mode: 'html'});
   return await strapi.plugins['email'].services.email.send({
     to: 'a.i.kulinich@gmail.com',
     from: 'a.i.kulinich@gmail.com',
