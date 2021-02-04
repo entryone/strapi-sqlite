@@ -54,6 +54,7 @@ module.exports = {
       address,
       description,
       totalSumText,
+      comment: ctx.request.body.comment,
       city: ctx.request.body.city || 1,
       deliveryPrice: deliveryPrice || 15,
       item: ctx.request.body.items,
@@ -76,6 +77,7 @@ ${order.description.trim()}
 Телефон: ${order.phone}
 Куда: ${order.city.name}
 Адрес: ${order.address}
+Коментарий: ${order.comment}
 ===========`
   bot.sendMessage(kulinich_chatId, text, {parse_mode: 'html'});
   bot.sendMessage(manager_chatId, text, {parse_mode: 'html'});
