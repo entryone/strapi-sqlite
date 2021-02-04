@@ -27,7 +27,11 @@ module.exports = {
     pr.forEach(prod => {
       prods[prod.id] = prod
     })
-    let fullSum = 0
+
+    const ct = await strapi.query('city').findOne({id: parseInt(ctx.request.body.city)})
+    console.log('city', ct, ctx.request.body.city)
+    const deliveryPrice = ct.deliveryPrice
+    let fullSum = deliveryPrice
     let fullTitle = []
     let description = ''
     let totalSumText = ''
@@ -42,12 +46,16 @@ module.exports = {
       totalSumText = `${fullSum} руб`
     })
 
+    description = description + ', \nДоставка ' + deliveryPrice +' руб'
+
     const order = await strapi.query('order').create({
       customerName: name,
       phone,
       address,
       description,
       totalSumText,
+      city: ctx.request.body.city || 1,
+      deliveryPrice: deliveryPrice || 15,
       item: ctx.request.body.items,
     });
     await senEmail(order)
@@ -63,9 +71,10 @@ async function senEmail (order) {
 № <b>${order.id}</b>
 ${order.description.trim()}
 
-Сумма: ${order.totalSumText}
+Сумма: <b>${order.totalSumText}</b>
 Имя: ${order.customerName}
 Телефон: ${order.phone}
+Куда: ${order.city.name}
 Адрес: ${order.address}
 ===========`
   bot.sendMessage(kulinich_chatId, text, {parse_mode: 'html'});

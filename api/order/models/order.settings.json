@@ -31,6 +31,15 @@
     },
     "address": {
       "type": "string"
+    },
+    "comment": {
+      "type": "string"
+    },
+    "city": {
+      "model": "city"
+    },
+    "deliveryPrice": {
+      "type": "integer"
     }
   }
 }
