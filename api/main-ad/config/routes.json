@@ -1,0 +1,28 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/main-ad",
+      "handler": "main-ad.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/main-ad",
+      "handler": "main-ad.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/main-ad",
+      "handler": "main-ad.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}
