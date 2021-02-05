@@ -1,15 +1,17 @@
 'use strict';
 const TelegramBot = require('node-telegram-bot-api');
 const token = '756258457:AAEsOHkTF61dZ_-_tCsMkmaCMuLykp06pGQ';
-const bot = new TelegramBot(token, {polling: true});
+const bot = new TelegramBot(token, {polling: false});
 const kulinich_chatId = '429692685'
 const manager_chatId = '1574267841'
+/*
 bot.on('message', (msg) => {
   console.log(msg);
   const chatId = msg.chat.id;
   const text = msg.text;
   bot.sendMessage(chatId, 'Received your message: '+text, {parse_mode: 'html'});
 });
+*/
 
 /**
  * Read the documentation (https://strapi.io/documentation/developer-docs/latest/concepts/controllers.html#core-controllers)
