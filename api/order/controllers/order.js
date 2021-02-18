@@ -70,7 +70,19 @@ module.exports = {
 
 
 async function senEmail (order) {
-  const text = `===========
+  const text = getTelegramMessageText(order)
+  bot.sendMessage(kulinich_chatId, text, {parse_mode: 'html'});
+  bot.sendMessage(manager_chatId, text, {parse_mode: 'html'});
+  return await strapi.plugins['email'].services.email.send({
+    to: 'a.i.kulinich@gmail.com',
+    from: 'info@la-supreme.ru',
+    subject: 'Новый заказ №' + order.id,
+    html: getMailMessageText(order),
+  });
+}
+
+function getTelegramMessageText (order) {
+  return `===========
 № <b>${order.id}</b>
 ${order.description.trim()}
 
@@ -81,13 +93,17 @@ ${order.description.trim()}
 Адрес: ${order.address}
 Комментарий: ${order.comment}
 ===========`
-  bot.sendMessage(kulinich_chatId, text, {parse_mode: 'html'});
-  bot.sendMessage(manager_chatId, text, {parse_mode: 'html'});
-  return await strapi.plugins['email'].services.email.send({
-    to: 'a.i.kulinich@gmail.com',
-    from: 'info@la-supreme.ru',
-    subject: 'Новый заказа №' + order.id,
-    html: text,
-  });
+}
 
+function getMailMessageText (order) {
+  return `
+№ <b>${order.id}</b><br/>
+${order.description.trim()}<br/>
+
+Сумма: <b>${order.totalSumText}</b><br/>
+Имя: ${order.customerName}<br/>
+Телефон: ${order.phone}<br/>
+Куда: ${order.city.name}<br/>
+Адрес: ${order.address}<br/>
+Комментарий: ${order.comment}`
 }
