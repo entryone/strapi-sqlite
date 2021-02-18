@@ -85,7 +85,7 @@ ${order.description.trim()}
   bot.sendMessage(manager_chatId, text, {parse_mode: 'html'});
   return await strapi.plugins['email'].services.email.send({
     to: 'a.i.kulinich@gmail.com',
-    from: 'a.i.kulinich@gmail.com',
+    from: 'infoh@la-supreme.ru',
     subject: 'Новый заказа №' + order.id,
     text,
   });
