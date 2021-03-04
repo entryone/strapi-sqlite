@@ -19,6 +19,9 @@
     },
     "seoDescription": {
       "type": "text"
+    },
+    "seoKeywords": {
+      "type": "text"
     }
   }
 }
