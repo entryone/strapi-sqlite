@@ -2,7 +2,8 @@
   "kind": "collectionType",
   "collectionName": "razdel_menus",
   "info": {
-    "name": "Razdel menu"
+    "name": "Razdel menu",
+    "description": ""
   },
   "options": {
     "increments": true,
@@ -12,6 +13,12 @@
   "attributes": {
     "Name": {
       "type": "string"
+    },
+    "seoTitle": {
+      "type": "string"
+    },
+    "seoDescription": {
+      "type": "text"
     }
   }
 }
