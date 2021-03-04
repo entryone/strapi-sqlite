@@ -22,12 +22,21 @@ module.exports = {
   async addFromCart(ctx) {
     console.log('data', ctx.request.body)
     const {name, phone, address, items} = ctx.request.body
+
     const prods = {}
-    const products = items.map(item => item.product)
+    const products = items.filter(_prod => _prod.type !== 'set').map(item => item.product)
     const pr = await strapi.query('product')
       .find({id_in: products})
     pr.forEach(prod => {
       prods[prod.id] = prod
+    })
+
+    const sets = {}
+    const setsIDs = items.filter(_prod => _prod.type === 'set').map(item => item.product)
+    const _set = await strapi.query('product-set')
+      .find({id_in: setsIDs})
+    _set.forEach(st => {
+      sets[st.id] = st
     })
 
     const ct = await strapi.query('city').findOne({id: parseInt(ctx.request.body.city)})
@@ -37,15 +46,27 @@ module.exports = {
     let fullTitle = []
     let description = ''
     let totalSumText = ''
+    console.log('sets', sets)
     ctx.request.body.items.forEach(function (item) {
-      const product = prods[item.product]
-      item.Price = product.Price
-      const itemSum = product.Price * item.Count
-      item.sum = `${product.Name}: ${product.Price} x ${item.Count} = ${itemSum} руб`
-      fullSum += itemSum
-      fullTitle.push(`${product.Name} x ${item.Count}`)
-      description = `${fullTitle.join(', \n')}`
-      totalSumText = `${fullSum} руб`
+      if (item.type !== 'set') {
+        const product = prods[item.product]
+        item.Price = product.Price
+        const itemSum = product.Price * item.Count
+        item.sum = `${product.Name}: ${product.Price} x ${item.Count} = ${itemSum} руб`
+        fullSum += itemSum
+        fullTitle.push(`${product.Name} x ${item.Count}`)
+        description = `${fullTitle.join(', \n')}`
+        totalSumText = `${fullSum} руб`
+      } else {
+        const set = sets[item.product]
+        item.Price = set.price
+        const itemSum = set.price * item.Count
+        item.sum = `${set.name}: ${set.price} x ${item.Count} = ${itemSum} руб`
+        fullSum += itemSum
+        fullTitle.push(`${set.name} x ${item.Count}`)
+        description = `${fullTitle.join(', \n')}`
+        totalSumText = `${fullSum} руб`
+      }
     })
 
     description = description + ', \nДоставка ' + deliveryPrice +' руб'
