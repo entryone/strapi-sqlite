@@ -25,6 +25,9 @@
     },
     "description": {
       "type": "text"
+    },
+    "seoImageUrl": {
+      "type": "string"
     }
   }
 }
