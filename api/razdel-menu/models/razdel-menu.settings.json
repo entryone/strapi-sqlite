@@ -22,6 +22,9 @@
     },
     "seoKeywords": {
       "type": "text"
+    },
+    "description": {
+      "type": "text"
     }
   }
 }
