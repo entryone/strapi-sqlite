@@ -1,0 +1,17 @@
+{
+  "collectionName": "components_order_item_set_items",
+  "info": {
+    "name": "SetItems",
+    "icon": "list-ul",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "product": {
+      "model": "product"
+    },
+    "count": {
+      "type": "integer"
+    }
+  }
+}
