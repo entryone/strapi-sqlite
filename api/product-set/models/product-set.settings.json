@@ -2,7 +2,8 @@
   "kind": "collectionType",
   "collectionName": "product_sets",
   "info": {
-    "name": "productSet"
+    "name": "productSet",
+    "description": ""
   },
   "options": {
     "increments": true,
@@ -18,6 +19,11 @@
     },
     "products": {
       "collection": "product"
+    },
+    "items": {
+      "type": "component",
+      "repeatable": true,
+      "component": "order-item.set-items"
     }
   }
 }

@@ -35,6 +35,9 @@
     },
     "razdel_menu": {
       "model": "razdel-menu"
+    },
+    "podrazdel_menu": {
+      "model": "razdel-menu"
     }
   }
 }
