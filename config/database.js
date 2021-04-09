@@ -1,5 +1,5 @@
 module.exports = ({ env }) => ({
-  defaultConnection: 'sqlite',
+  defaultConnection: 'postgres',
   connections: {
     postgres: {
       connector: 'bookshelf',
