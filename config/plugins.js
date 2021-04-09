@@ -8,6 +8,18 @@ module.exports = ({ env }) => ({// ...
       defaultFrom: 'a.i.kulinich@gmail.com',
       defaultReplyTo: 'a.i.kulinich@gmail.com',
     }
-  }
+  },
+  upload: {
+    provider: 'cloudinary',
+    providerOptions: {
+      cloud_name: env('CLOUDINARY_NAME'),
+      api_key: env('CLOUDINARY_KEY'),
+      api_secret: env('CLOUDINARY_SECRET'),
+    },
+    actionOptions: {
+      upload: {},
+      delete: {},
+    },
+  },
 });
 
